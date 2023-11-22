@@ -19,11 +19,11 @@ function App({name, genre, releaseDate}:AppScreenProps): JSX.Element {
     <BrowserRouter>
       <Routes>
         <Route
-          path={AppRoute.Root}
+          path={AppRoute.Main}
           element={<WelcomeScreen name={name} genre={genre} releaseDate={releaseDate} />}
         />
         <Route
-          path={AppRoute.Login}
+          path={AppRoute.LogIn}
           element={<SignInScreen test='test' />}
         />
         <Route
@@ -31,11 +31,11 @@ function App({name, genre, releaseDate}:AppScreenProps): JSX.Element {
           element={<PlayerScreen test='test'/>}
         />
         <Route
-          path={AppRoute.Review}
+          path={AppRoute.AddReview}
           element={<AddReviewScreen test='test'/>}
         />
         <Route
-          path={AppRoute.MoviePage}
+          path={AppRoute.Film}
           element={<MoviePageScreen test='test'/>}
         />
         <Route
