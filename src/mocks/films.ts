@@ -17,7 +17,7 @@ export const films: Film[] = [
     starring: ['1,2,3'],
     runTime: 145,
     genre: 'Fantastic',
-    released: 2,
+    released: 1900,
     isFavorite: false
   },
   {
@@ -36,7 +36,7 @@ export const films: Film[] = [
     starring: ['1,2,3'],
     runTime: 145,
     genre: 'Fantastic',
-    released: 2,
+    released: 2001,
     isFavorite: false
   },
   {
@@ -55,7 +55,7 @@ export const films: Film[] = [
     starring: ['1,2,3'],
     runTime: 145,
     genre: 'Fantastic',
-    released: 2,
+    released: 2023,
     isFavorite: false
   },
   {
@@ -74,7 +74,7 @@ export const films: Film[] = [
     starring: ['1,2,3'],
     runTime: 145,
     genre: 'Fantastic',
-    released: 2,
+    released: 1988,
     isFavorite: false
   },
   {
@@ -93,7 +93,7 @@ export const films: Film[] = [
     starring: ['1,2,3'],
     runTime: 145,
     genre: 'Fantastic',
-    released: 2,
+    released: 2001,
     isFavorite: false
   },
   {
@@ -112,7 +112,7 @@ export const films: Film[] = [
     starring: ['1,2,3'],
     runTime: 145,
     genre: 'Fantastic',
-    released: 2,
+    released: 2010,
     isFavorite: false
   },
   {
@@ -131,7 +131,7 @@ export const films: Film[] = [
     starring: ['1,2,3'],
     runTime: 145,
     genre: 'Fantastic',
-    released: 2,
+    released: 2019,
     isFavorite: false
   },
   {
@@ -150,7 +150,7 @@ export const films: Film[] = [
     starring: ['1,2,3'],
     runTime: 145,
     genre: 'Fantastic',
-    released: 2,
+    released: 2021,
     isFavorite: false
   }
 ];

@@ -18,6 +18,7 @@ type AppScreenProps = {
 }
 
 function App({name, genre, releaseDate, films}:AppScreenProps): JSX.Element {
+  const [firstFilm] = films;
 
   return (
     <BrowserRouter>
@@ -40,7 +41,7 @@ function App({name, genre, releaseDate, films}:AppScreenProps): JSX.Element {
         />
         <Route
           path={AppRoute.Film}
-          element={<MoviePageScreen test='test'/>}
+          element={<MoviePageScreen film={firstFilm}/>}
         />
         <Route
           path={AppRoute.MyList}
