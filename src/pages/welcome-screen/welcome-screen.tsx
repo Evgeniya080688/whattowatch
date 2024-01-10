@@ -1,6 +1,6 @@
-import FilmCard from '../../components/film-card/film-card';
 import Logo from '../../components/logo/logo';
 import {Film} from '../../types/film';
+import FilmsList from '../../components/films-list/films-list';
 
 type WelcomeScreenProps = {
   name: string;
@@ -104,26 +104,7 @@ function WelcomeScreen({name, genre, releaseDate, films}: WelcomeScreenProps): J
           </ul>
 
           <div className="catalog__films-list">
-            <FilmCard src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" title="Fantastic Beasts: The Crimes of Grindelwald" href="film-page.html"/>
-            <FilmCard src="img/bohemian-rhapsody.jpg" title="Bohemian Rhapsody" href="film-page.html"/>
-            <FilmCard src="img/macbeth.jpg" title="Macbeth" href="film-page.html"/>
-            <FilmCard src="img/aviator.jpg" title="Aviator" href="film-page.html"/>
-            <FilmCard src="img/we-need-to-talk-about-kevin.jpg" title="We need to talk about Kevin" href="film-page.html"/>
-            <FilmCard src="img/what-we-do-in-the-shadows.jpg" title="What We Do in the Shadows" href="film-page.html"/>
-            <FilmCard src="img/revenant.jpg" title="Revenant" href="film-page.html"/>
-            <FilmCard src="img/johnny-english.jpg" title="Johnny English" href="film-page.html"/>
-            <FilmCard src="img/shutter-island.jpg" title="Shutter Island" href="film-page.html"/>
-            <FilmCard src="img/pulp-fiction.jpg" title="Pulp Fiction" href="film-page.html"/>
-            <FilmCard src="img/no-country-for-old-men.jpg" title="No Country for Old Men" href="film-page.html"/>
-            <FilmCard src="img/snatch.jpg" title="Snatch" href="film-page.html"/>
-            <FilmCard src="img/moonrise-kingdom.jpg" title="Moonrise Kingdom" href="film-page.html"/>
-            <FilmCard src="img/seven-years-in-tibet.jpg" title="Seven Years in Tibet" href="film-page.html"/>
-            <FilmCard src="img/midnight-special.jpg" title="Midnight Special" href="film-page.html"/>
-            <FilmCard src="img/war-of-the-worlds.jpg" title="War of the Worlds" href="film-page.html"/>
-            <FilmCard src="img/dardjeeling-limited.jpg" title="Dardjeeling Limited" href="film-page.html"/>
-            <FilmCard src="img/orlando.jpg" title="Orlando" href="film-page.html"/>
-            <FilmCard src="img/mindhunter.jpg" title="Mindhunter" href="film-page.html"/>
-            <FilmCard src="img/midnight-special.jpg" title="Midnight Special" href="film-page.html"/>
+            <FilmsList films={films} />
           </div>
 
           <div className="catalog__more">
