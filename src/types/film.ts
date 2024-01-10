@@ -15,5 +15,8 @@ export type Film = {
   runTime: number;
   genre: string;
   released: number;
+  isFavorite: boolean;
 };
+
+export type Films = Film[];
 

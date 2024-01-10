@@ -1,13 +1,15 @@
 import FilmCard from '../../components/film-card/film-card';
 import Logo from '../../components/logo/logo';
+import {Film} from '../../types/film';
 
 type WelcomeScreenProps = {
   name: string;
   genre: string;
   releaseDate: string;
+  films: Film[];
 }
 
-function WelcomeScreen({name, genre, releaseDate}: WelcomeScreenProps): JSX.Element {
+function WelcomeScreen({name, genre, releaseDate, films}: WelcomeScreenProps): JSX.Element {
   return (
     <>
       <section className="film-card">
