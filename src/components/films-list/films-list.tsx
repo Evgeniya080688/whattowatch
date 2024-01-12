@@ -12,14 +12,14 @@ function FilmsList(props:FilmsListCardProps): JSX.Element {
   return (
     <>
       {
-        films.map((film, id) => {
-          const keyValue = `${id}`;
-          const { videoLink, name, previewImage} = film;
+        films.map((film, key) => {
+          const { id, videoLink, name, previewImage} = film;
+          const keyValue = `${key}`;
           return (
-            <FilmCard key = {keyValue} src={previewImage} title={name} href={videoLink} />
+            <FilmCard id = {id} key = {keyValue} src={previewImage} title={name} href={videoLink} />
           );
         })
-      };
+      }
     </>
   );
 }

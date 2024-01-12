@@ -1,6 +1,11 @@
 import Logo from '../../components/logo/logo';
+import UserBlock from '../../components/user-block/user-block';
+import Footer from '../../components/footer/footer';
+import ButtonPlay from '../../components/button-play/button-play';
+import ButtonMyList from '../../components/button-my-list/button-my-list';
 import {Film} from '../../types/film';
 import FilmsList from '../../components/films-list/films-list';
+
 
 type WelcomeScreenProps = {
   name: string;
@@ -22,16 +27,7 @@ function WelcomeScreen({name, genre, releaseDate, films}: WelcomeScreenProps): J
         <header className="page-header film-card__head">
           <Logo />
 
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
-            </li>
-          </ul>
+          <UserBlock/>
         </header>
 
         <div className="film-card__wrap">
@@ -48,18 +44,8 @@ function WelcomeScreen({name, genre, releaseDate, films}: WelcomeScreenProps): J
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                <ButtonPlay />
+                <ButtonMyList />
               </div>
             </div>
           </div>
@@ -112,19 +98,7 @@ function WelcomeScreen({name, genre, releaseDate, films}: WelcomeScreenProps): J
           </div>
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </>
 

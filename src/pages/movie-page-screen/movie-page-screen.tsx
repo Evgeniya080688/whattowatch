@@ -1,6 +1,11 @@
 import Logo from '../../components/logo/logo';
+import Footer from '../../components/footer/footer';
+import ButtonPlay from '../../components/button-play/button-play';
+import ButtonMyList from '../../components/button-my-list/button-my-list';
+import UserBlock from '../../components/user-block/user-block';
 import {Film, Films} from '../../types/film';
 import FilmsList from '../../components/films-list/films-list';
+import {Link} from 'react-router-dom';
 
 type MoviePageScreenProps = {
   film: Film;
@@ -10,7 +15,7 @@ type MoviePageScreenProps = {
 function MoviePageScreen(props: MoviePageScreenProps): JSX.Element {
   const {film} = props;
   const {films} = props;
-  const {name, posterImage, backgroundImage, genre, released, videoLink, description,
+  const {id, name, posterImage, backgroundImage, genre, released, description,
     director, rating, scoresCount, starring} = film;
   return (
     <>
@@ -25,16 +30,7 @@ function MoviePageScreen(props: MoviePageScreenProps): JSX.Element {
           <header className="page-header film-card__head">
             <Logo />
 
-            <ul className="user-block">
-              <li className="user-block__item">
-                <div className="user-block__avatar">
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-                </div>
-              </li>
-              <li className="user-block__item">
-                <a className="user-block__link">Sign out</a>
-              </li>
-            </ul>
+            <UserBlock/>
           </header>
 
           <div className="film-card__wrap">
@@ -46,19 +42,9 @@ function MoviePageScreen(props: MoviePageScreenProps): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref={videoLink}></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
-                <a href="add-review.html" className="btn film-card__button">Add review</a>
+                <ButtonPlay />
+                <ButtonMyList />
+                <Link className="btn film-card__button" to={`/films/:${id}/review`}>Add review</Link>
               </div>
             </div>
           </div>
@@ -118,19 +104,7 @@ function MoviePageScreen(props: MoviePageScreenProps): JSX.Element {
           </div>
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </>
   );

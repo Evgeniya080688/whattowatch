@@ -1,11 +1,15 @@
+import {Film} from '../../types/film';
 type PlayerScreenProps = {
-  test: string;
+  film: Film;
 }
 
-function PlayerScreen({test}: PlayerScreenProps): JSX.Element {
+function PlayerScreen(props: PlayerScreenProps): JSX.Element {
+  const {film} = props;
+  const {posterImage, runTime, videoLink} = film;
+
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={videoLink} className="player__video" poster={posterImage}></video>
 
       <button type="button" className="player__exit">Exit</button>
 
@@ -15,7 +19,7 @@ function PlayerScreen({test}: PlayerScreenProps): JSX.Element {
             <progress className="player__progress" value="30" max="100"></progress>
             <div className="player__toggler" style={{left: '30%' }}>Toggler</div>
           </div>
-          <div className="player__time-value">1:30:29</div>
+          <div className="player__time-value">{runTime}</div>
         </div>
 
         <div className="player__controls-row">
