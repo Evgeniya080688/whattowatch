@@ -3,19 +3,19 @@ import Footer from '../../components/footer/footer';
 import ButtonPlay from '../../components/button-play/button-play';
 import ButtonMyList from '../../components/button-my-list/button-my-list';
 import UserBlock from '../../components/user-block/user-block';
-import {Film, Films} from '../../types/film';
+import {Films} from '../../types/film';
 import FilmsList from '../../components/films-list/films-list';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 
 type MoviePageScreenProps = {
-  film: Film;
   films: Films;
 }
 
 function MoviePageScreen(props: MoviePageScreenProps): JSX.Element {
-  const {film} = props;
+  const { id } = useParams();
   const {films} = props;
-  const {id, name, posterImage, backgroundImage, genre, released, description,
+  const film = films[Number(String(id).slice(1))];
+  const {name, posterImage, backgroundImage, genre, released, description,
     director, rating, scoresCount, starring} = film;
   return (
     <>
@@ -44,7 +44,7 @@ function MoviePageScreen(props: MoviePageScreenProps): JSX.Element {
               <div className="film-card__buttons">
                 <ButtonPlay />
                 <ButtonMyList />
-                <Link className="btn film-card__button" to={`/films/:${id}/review`}>Add review</Link>
+                <Link className="btn film-card__button" to={`/films/:${Number(String(id).slice(1))}/review`}>Add review</Link>
               </div>
             </div>
           </div>

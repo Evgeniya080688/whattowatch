@@ -1,14 +1,13 @@
-import {Link} from 'react-router-dom';
+import {Link } from 'react-router-dom';
 
 type FilmCardProps = {
-  key: string;
   id: number;
+  key: string;
   src: string;
   title: string;
-  href: string;
 }
 
-function FilmCard({key, id, src, title, href}:FilmCardProps): JSX.Element {
+function FilmCard({id, key, src, title}:FilmCardProps): JSX.Element {
   return (
     <article key = {key} className="small-film-card catalog__films-card">
       <div className="small-film-card__image">

@@ -1,14 +1,17 @@
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import AddReviewForm from '../../components/add-review-form/add-review-form';
-import {Film} from '../../types/film';
+import {Films} from '../../types/film';
+import {useParams} from 'react-router-dom';
 
 type AddReviewScreenProps = {
-  film: Film;
+  films: Films;
 }
 
 function AddReviewScreen(props: AddReviewScreenProps): JSX.Element {
-  const {film} = props;
+  const { id } = useParams();
+  const {films} = props;
+  const film = films[Number(String(id).slice(1))];
   const {posterImage, previewImage, videoLink, name} = film;
   return (
     <section className="film-card film-card--full">
