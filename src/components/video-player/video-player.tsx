@@ -1,14 +1,15 @@
 import {useState, useEffect, useRef} from 'react';
 
 type VideoPlayerProps = {
-  autoPlay: boolean;
+  isPlaying: boolean;
   poster: string;
   src: string;
+  onFocusPlayer: () => void;
+  onUnFocusPlayer: () => void;
 }
 
-function VideoPlayer({autoPlay, poster, src}: VideoPlayerProps): JSX.Element {
+function VideoPlayer({poster, src, isPlaying, onFocusPlayer, onUnFocusPlayer}: VideoPlayerProps): JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(autoPlay);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -19,18 +20,19 @@ function VideoPlayer({autoPlay, poster, src}: VideoPlayerProps): JSX.Element {
 
     videoRef.current.addEventListener('loadeddata', () => setIsLoading(false));
 
-    if (isPlaying) {
+    if (isPlaying && !(isLoading)){
       videoRef.current.play();
       return;
     }
 
     videoRef.current.pause();
+    videoRef.current.load();
   }, [isPlaying]);
 
   return (
     <div className="small-film-card__image"
-      onMouseOver={() => setIsPlaying(!isPlaying)}
-      onMouseOut={() => setIsPlaying(false)}
+      onMouseOver={onFocusPlayer}
+      onMouseOut={onUnFocusPlayer}
     >
       <video muted poster={poster} ref={videoRef} width="280" >
         <source src={src} type="video/mp4" />

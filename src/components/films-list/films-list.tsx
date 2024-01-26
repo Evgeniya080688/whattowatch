@@ -1,4 +1,4 @@
-//import {useState} from 'react';
+import {useState} from 'react';
 import FilmCard from '../film-card/film-card';
 import {Films} from '../../types/film';
 
@@ -8,7 +8,7 @@ type FilmsListCardProps = {
 
 function FilmsList(props:FilmsListCardProps): JSX.Element {
   const {films} = props;
-  // const [activeCard, setActiveCard] = useState(0);
+  const [activePlayer, setActivePlayer] = useState(-1);
   return (
     <>
       {
@@ -16,7 +16,16 @@ function FilmsList(props:FilmsListCardProps): JSX.Element {
           const { id, name, previewImage, videoLink} = film;
           const keyValue = `${key}`;
           return (
-            <FilmCard id = {id} key = {keyValue} src={videoLink} title={name} poster={previewImage}/>
+            <FilmCard
+              id = {id}
+              key = {keyValue}
+              src={videoLink}
+              title={name}
+              poster={previewImage}
+              isPlaying={id === activePlayer}
+              onFocusPlayer = {() => setActivePlayer(activePlayer === id ? -1 : id)}
+              onUnFocusPlayer={() => setActivePlayer(-1)}
+            />
           );
         })
       }

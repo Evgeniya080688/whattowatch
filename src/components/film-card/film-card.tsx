@@ -7,13 +7,24 @@ type FilmCardProps = {
   src: string;
   title: string;
   poster: string;
+  isPlaying: boolean;
+  onFocusPlayer: () => void;
+  onUnFocusPlayer: () => void;
+
 }
 
-function FilmCard({id, key, src, title, poster}:FilmCardProps): JSX.Element {
+function FilmCard({id, key, src, title, poster, isPlaying, onFocusPlayer, onUnFocusPlayer}:FilmCardProps): JSX.Element {
+
   return (
     <article key = {key} className="small-film-card catalog__films-card">
-      {/*<img src={poster} alt={title} width="280" height="175"/>*/}
-      <VideoPlayer autoPlay={false} poster={poster} src={src} />
+      <VideoPlayer
+        poster={poster}
+        src={src}
+        isPlaying={isPlaying}
+        onFocusPlayer={onFocusPlayer}
+        onUnFocusPlayer={onUnFocusPlayer}
+
+      />
       <h3 className="small-film-card__title">
         <Link className="small-film-card__link" to={`/films/:${id}`}>{title}</Link>
       </h3>
