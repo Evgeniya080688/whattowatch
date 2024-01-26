@@ -28,19 +28,11 @@ function VideoPlayer({autoPlay, poster, src}: VideoPlayerProps): JSX.Element {
   }, [isPlaying]);
 
   return (
-    // <Fragment>
-    //   <button
-    //     className={`track__button track__button--${isPlaying ? 'pause' : 'play'}`}
-    //     type="button"
-    //     disabled={isLoading}
-    //     onClick={() => setIsPlaying(!isPlaying)}
-    //   />
-    //   <div className="track__status">
-    //     <audio src={src} ref={audioRef} />
-    //   </div>
-    // </Fragment>
-    <div className="small-film-card__image" onMouseOver={() => setIsPlaying(!isPlaying)}>
-      <video poster={poster} ref={videoRef} width="280" onMouseOver={() => setIsPlaying(!isPlaying)}>
+    <div className="small-film-card__image"
+      onMouseOver={() => setIsPlaying(!isPlaying)}
+      onMouseOut={() => setIsPlaying(false)}
+    >
+      <video muted poster={poster} ref={videoRef} width="280" >
         <source src={src} type="video/mp4" />
       </video>
     </div>
