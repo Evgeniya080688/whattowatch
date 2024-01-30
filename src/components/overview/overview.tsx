@@ -9,11 +9,11 @@ type OverviewProps = {
 
 }
 
-function Overview({scoresCount, rating, description, director, starring}:OverviewProps): JSX.Element {
+function Overview({id, isActive,scoresCount, rating, description, director, starring}:OverviewProps): JSX.Element {
 
   return (
     <>
-      <div className="film-rating">
+      <div className={`film-rating ${(isActive !== id) ? 'visually-hidden' : ''}`}>
         <div className="film-rating__score">{scoresCount}</div>
         <p className="film-rating__meta">
           <span className="film-rating__level">Very good</span>
@@ -21,7 +21,7 @@ function Overview({scoresCount, rating, description, director, starring}:Overvie
         </p>
       </div>
 
-      <div className="film-card__text">
+      <div className={`film-card__text ${(isActive !== id) ? 'visually-hidden' : ''}`}>
         {description}
 
         <p className="film-card__director"><strong>Director: {director}</strong></p>

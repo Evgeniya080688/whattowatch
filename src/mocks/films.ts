@@ -54,7 +54,7 @@ export const films: Film[] = [
     director: 'director',
     starring: ['1,2,3'],
     runTime: 145,
-    genre: 'Fantastic',
+    genre: 'Comedy',
     released: 2023,
     isFavorite: false
   },
@@ -73,7 +73,7 @@ export const films: Film[] = [
     director: 'director',
     starring: ['1,2,3'],
     runTime: 145,
-    genre: 'Fantastic',
+    genre: 'Triller',
     released: 1988,
     isFavorite: false
   },
@@ -111,7 +111,7 @@ export const films: Film[] = [
     director: 'director',
     starring: ['1,2,3'],
     runTime: 145,
-    genre: 'Fantastic',
+    genre: 'Triller',
     released: 2010,
     isFavorite: false
   },
@@ -130,7 +130,7 @@ export const films: Film[] = [
     director: 'director',
     starring: ['1,2,3'],
     runTime: 145,
-    genre: 'Fantastic',
+    genre: 'Comedy',
     released: 2019,
     isFavorite: false
   },
@@ -149,7 +149,7 @@ export const films: Film[] = [
     director: 'director',
     starring: ['1,2,3'],
     runTime: 145,
-    genre: 'Fantastic',
+    genre: 'Triller',
     released: 2021,
     isFavorite: false
   }

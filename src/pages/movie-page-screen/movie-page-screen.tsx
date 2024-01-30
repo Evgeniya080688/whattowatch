@@ -17,6 +17,7 @@ function MoviePageScreen(props: MoviePageScreenProps): JSX.Element {
   const {films} = props;
   const film = films[Number(String(id).slice(1))];
   const {name, posterImage, backgroundImage, genre, released} = film;
+  const filmsByGenre = films.filter((filmItem) => filmItem.genre === genre && filmItem.id !== Number(String(id).slice(1)));
   return (
     <>
       <section className="film-card film-card--full">
@@ -66,7 +67,7 @@ function MoviePageScreen(props: MoviePageScreenProps): JSX.Element {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            <FilmsList films={films} />
+            <FilmsList films={filmsByGenre} />
           </div>
         </section>
 

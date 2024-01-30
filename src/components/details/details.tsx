@@ -6,13 +6,12 @@ type DetailsProps = {
   released: number;
   director: string;
   starring: [string];
-
 }
 
-function Details({runTime, genre, released, director, starring}:DetailsProps): JSX.Element {
+function Details({id, isActive, runTime, genre, released, director, starring}:DetailsProps): JSX.Element {
 
   return (
-    <div className="film-card__text film-card__row" style={{display: 'none'}}>
+    <div className={`film-card__text film-card__row ${(isActive !== id) ? 'visually-hidden' : ''}`} >
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Director</strong>

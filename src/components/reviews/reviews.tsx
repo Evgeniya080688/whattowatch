@@ -8,7 +8,7 @@ type ReviewsProps = {
 function Reviews({id, isActive}:ReviewsProps): JSX.Element {
 
   return (
-    <div className="film-card__reviews film-card__row" style={{display: 'none'}}>
+    <div className={`film-card__reviews film-card__row ${(isActive !== id) ? 'visually-hidden' : ''}`} >
       <div className="film-card__reviews-col">
         <div className="review">
           <blockquote className="review__quote">
