@@ -7,6 +7,8 @@ import Tabs from '../../components/tabs/tabs';
 import {Films} from '../../types/film';
 import FilmsList from '../../components/films-list/films-list';
 import {Link, useParams} from 'react-router-dom';
+import withVideoPlayer from '../../hocs/with-video-player/with-video-player';
+const FilmsListWrapped = withVideoPlayer(FilmsList);
 
 type MoviePageScreenProps = {
   films: Films;
@@ -67,7 +69,7 @@ function MoviePageScreen(props: MoviePageScreenProps): JSX.Element {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            <FilmsList films={filmsByGenre} />
+            <FilmsListWrapped films={filmsByGenre} />
           </div>
         </section>
 

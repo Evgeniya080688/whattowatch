@@ -2,6 +2,8 @@ import Logo from '../../components/logo/logo';
 import Footer from '../../components/footer/footer';
 import {Films} from '../../types/film';
 import FilmsList from '../../components/films-list/films-list';
+import withVideoPlayer from '../../hocs/with-video-player/with-video-player';
+const FilmsListWrapped = withVideoPlayer(FilmsList);
 
 type MyListScreenProps = {
   films: Films;
@@ -32,7 +34,7 @@ function MyListScreen(props: MyListScreenProps): JSX.Element {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <div className="catalog__films-list">
-          <FilmsList films={films} />
+          <FilmsListWrapped films={films} />
         </div>
       </section>
 

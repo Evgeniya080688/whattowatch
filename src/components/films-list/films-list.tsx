@@ -1,14 +1,14 @@
-import {useState} from 'react';
-import FilmCard from '../film-card/film-card';
+
 import {Films} from '../../types/film';
+import {Link} from 'react-router-dom';
 
 type FilmsListCardProps = {
   films: Films;
+  renderPlayer: ( poster: string, src: string, id: number) => JSX.Element;
 }
 
 function FilmsList(props:FilmsListCardProps): JSX.Element {
-  const {films} = props;
-  const [activePlayer, setActivePlayer] = useState(-1);
+  const {films, renderPlayer} = props;
   return (
     <>
       {
@@ -16,16 +16,12 @@ function FilmsList(props:FilmsListCardProps): JSX.Element {
           const { id, name, previewImage, videoLink} = film;
           const keyValue = `${key}`;
           return (
-            <FilmCard
-              id = {id}
-              key = {keyValue}
-              src={videoLink}
-              title={name}
-              poster={previewImage}
-              isPlaying={id === activePlayer}
-              onFocusPlayer = {() => setActivePlayer(activePlayer === id ? -1 : id)}
-              onUnFocusPlayer={() => setActivePlayer(-1)}
-            />
+            <article key = {keyValue} className="small-film-card catalog__films-card">
+              {renderPlayer(previewImage, videoLink, id )}
+              <h3 className="small-film-card__title">
+                <Link className="small-film-card__link" to={`/films/:${id}`}>{name}</Link>
+              </h3>
+            </article>
           );
         })
       }

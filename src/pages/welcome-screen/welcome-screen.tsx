@@ -5,7 +5,8 @@ import ButtonPlay from '../../components/button-play/button-play';
 import ButtonMyList from '../../components/button-my-list/button-my-list';
 import {Film} from '../../types/film';
 import FilmsList from '../../components/films-list/films-list';
-
+import withVideoPlayer from '../../hocs/with-video-player/with-video-player';
+const FilmsListWrapped = withVideoPlayer(FilmsList);
 
 type WelcomeScreenProps = {
   name: string;
@@ -90,7 +91,7 @@ function WelcomeScreen({name, genre, releaseDate, films}: WelcomeScreenProps): J
           </ul>
 
           <div className="catalog__films-list">
-            <FilmsList films={films} />
+            <FilmsListWrapped films={films} />
           </div>
 
           <div className="catalog__more">

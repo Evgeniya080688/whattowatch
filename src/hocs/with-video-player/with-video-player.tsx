@@ -1,9 +1,9 @@
 import {ComponentType} from 'react';
 import {useState} from 'react';
-import VideoPlayer from '../components/video-player/video-player';
+import VideoPlayer from '../../components/video-player/video-player';
 
 type HOCProps = {
-  renderPlayer: (src: string, id: number, poster: string) => void;
+  renderPlayer: (poster: string, src: string, id: number) => void;
 };
 
 function withVideoPlayer<T>(Component: ComponentType<T>)
@@ -12,7 +12,7 @@ function withVideoPlayer<T>(Component: ComponentType<T>)
   type ComponentProps = Omit<T, keyof HOCProps>;
 
   function WithVideoPlayer(props: ComponentProps): JSX.Element {
-    const [activePlayerId, setActivePlayerId] = useState(0);
+    const [activePlayerId, setActivePlayerId] = useState(-1);
     return (
       <Component
         {...props as T}
