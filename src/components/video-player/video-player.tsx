@@ -1,4 +1,5 @@
 import {useState, useEffect, useRef} from 'react';
+import {useElementListener} from '../../hooks/use-element-listener';
 
 type VideoPlayerProps = {
   isPlaying: boolean;
@@ -13,12 +14,16 @@ function VideoPlayer({poster, src, isPlaying, onFocusPlayer, onUnFocusPlayer}: V
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
+  const handleDataLoaded = () => {
+    setIsLoading(false);
+  };
+
+  useElementListener('loadeddata', videoRef, handleDataLoaded);
+
   useEffect(() => {
     if (videoRef.current === null) {
       return;
     }
-
-    videoRef.current.addEventListener('loadeddata', () => setIsLoading(false));
 
     if (isPlaying && !(isLoading)){
       videoRef.current.play();
