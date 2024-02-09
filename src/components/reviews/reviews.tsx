@@ -2,9 +2,7 @@ type ReviewsProps = {
   id: number;
   isActive: number;
 }
-// const isDisplayBlock = (id:number, isActive:number):string => {
-//   return ((isActive === id) ? `{{display: 'none'}}` : `{{}}`);
-// }
+
 function Reviews({id, isActive}:ReviewsProps): JSX.Element {
 
   return (
