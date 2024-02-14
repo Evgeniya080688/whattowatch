@@ -1,4 +1,3 @@
-
 import {Films} from '../../types/film';
 import {Link} from 'react-router-dom';
 
