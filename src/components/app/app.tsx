@@ -25,7 +25,7 @@ function App({name, genre, releaseDate, films}:AppScreenProps): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<WelcomeScreen name={name} genre={genre} releaseDate={releaseDate} films={films}/>}
+          element={<WelcomeScreen name={name} genre={genre} releaseDate={releaseDate}/>}
         />
         <Route
           path={AppRoute.LogIn}
