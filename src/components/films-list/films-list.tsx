@@ -9,7 +9,7 @@ type FilmsListCardProps = {
 function FilmsList(props:FilmsListCardProps): JSX.Element {
   const {films, renderPlayer} = props;
   return (
-    <>
+    <div className="catalog__films-list">
       {
         films.map((film, key) => {
           const { id, name, previewImage, videoLink} = film;
@@ -24,7 +24,7 @@ function FilmsList(props:FilmsListCardProps): JSX.Element {
           );
         })
       }
-    </>
+    </div>
   );
 }
 
