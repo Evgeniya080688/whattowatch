@@ -1,10 +1,7 @@
 import Logo from '../../components/logo/logo';
 import Footer from '../../components/footer/footer';
-type SignInScreenProps = {
-  test: string;
-}
 
-function SignInScreen({test}: SignInScreenProps): JSX.Element {
+function SignInScreen(): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">

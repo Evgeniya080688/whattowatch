@@ -13,14 +13,9 @@ import {showMoreFilms} from '../../store/action';
 
 const FilmsListWrapped = withVideoPlayer(FilmsList);
 
-type WelcomeScreenProps = {
-  name: string;
-  genre: string;
-  releaseDate: string;
-}
-
-function WelcomeScreen({name, genre, releaseDate}: WelcomeScreenProps): JSX.Element {
+function WelcomeScreen(): JSX.Element {
   const films = useAppSelector((state) => state.filmsList);
+  const firstFilm = films[0];
   const filmsFiltered = useAppSelector((state) => state.filmsFiltered);
   const filmsVisible = useAppSelector((state) => state.filmsVisible);
   const genres = ['All genres'];
@@ -50,10 +45,10 @@ function WelcomeScreen({name, genre, releaseDate}: WelcomeScreenProps): JSX.Elem
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{name}</h2>
+              <h2 className="film-card__title">{firstFilm.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{genre}</span>
-                <span className="film-card__year">{releaseDate}</span>
+                <span className="film-card__genre">{firstFilm.genre}</span>
+                <span className="film-card__year">{firstFilm.released}</span>
               </p>
 
               <div className="film-card__buttons">

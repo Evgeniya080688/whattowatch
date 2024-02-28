@@ -1,16 +1,12 @@
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import AddReviewForm from '../../components/add-review-form/add-review-form';
-import {Films} from '../../types/film';
 import {useParams} from 'react-router-dom';
+import {useAppSelector} from '../../hooks';
 
-type AddReviewScreenProps = {
-  films: Films;
-}
-
-function AddReviewScreen(props: AddReviewScreenProps): JSX.Element {
+function AddReviewScreen(): JSX.Element {
   const { id } = useParams();
-  const {films} = props;
+  const films = useAppSelector((state) => state.filmsList);
   const film = films[Number(String(id).slice(1))];
   const {posterImage, previewImage, videoLink, name} = film;
   return (

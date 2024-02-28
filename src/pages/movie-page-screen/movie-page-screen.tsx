@@ -4,19 +4,15 @@ import ButtonPlay from '../../components/button-play/button-play';
 import ButtonMyList from '../../components/button-my-list/button-my-list';
 import UserBlock from '../../components/user-block/user-block';
 import Tabs from '../../components/tabs/tabs';
-import {Films} from '../../types/film';
 import FilmsList from '../../components/films-list/films-list';
 import {Link, useParams} from 'react-router-dom';
 import withVideoPlayer from '../../hocs/with-video-player/with-video-player';
+import {useAppSelector} from '../../hooks';
 const FilmsListWrapped = withVideoPlayer(FilmsList);
 
-type MoviePageScreenProps = {
-  films: Films;
-}
-
-function MoviePageScreen(props: MoviePageScreenProps): JSX.Element {
+function MoviePageScreen(): JSX.Element {
   const { id } = useParams();
-  const {films} = props;
+  const films = useAppSelector((state) => state.filmsList);
   const film = films[Number(String(id).slice(1))];
   const {name, posterImage, backgroundImage, genre, released} = film;
   const filmsByGenre = films.filter((filmItem) => filmItem.genre === genre && filmItem.id !== Number(String(id).slice(1)));

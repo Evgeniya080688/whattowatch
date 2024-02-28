@@ -1,16 +1,12 @@
 import Logo from '../../components/logo/logo';
 import Footer from '../../components/footer/footer';
-import {Films} from '../../types/film';
 import FilmsList from '../../components/films-list/films-list';
 import withVideoPlayer from '../../hocs/with-video-player/with-video-player';
+import {useAppSelector} from '../../hooks';
 const FilmsListWrapped = withVideoPlayer(FilmsList);
 
-type MyListScreenProps = {
-  films: Films;
-}
-
-function MyListScreen(props: MyListScreenProps): JSX.Element {
-  const {films} = props;
+function MyListScreen(): JSX.Element {
+  const films = useAppSelector((state) => state.filmsList);
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
