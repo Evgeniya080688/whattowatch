@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeGenre, getFilmsByGenre, showMoreFilms} from './action';
+import {changeGenre, getFilmsByGenre, showMoreFilms, loadFilms} from './action';
 import {films} from './../mocks/films';
 
 const initialState = {
@@ -24,6 +24,9 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(showMoreFilms,(state) => {
       state.step++;
       state.filmsVisible = state.filmsFiltered.slice(0,8 * state.step);
+    })
+    .addCase(loadFilms,(state, action) => {
+      state.filmsList = action.payload;
     });
 });
 
