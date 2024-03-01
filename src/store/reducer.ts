@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeGenre, getFilmsByGenre, showMoreFilms, loadFilms, requireAuthorization, setError} from './action';
+import {changeGenre, getFilmsByGenre, showMoreFilms, loadFilms, requireAuthorization, setError, setFilmsDataLoadingStatus} from './action';
 import {Films} from '../types/film';
 import {AuthorizationStatus} from '../const';
 
@@ -10,6 +10,7 @@ type InitalState = {
   filmsVisible: Films;
   step: number;
   authorizationStatus: AuthorizationStatus;
+  isFilmsDataLoading: boolean;
   error: string | null;
 }
 
@@ -20,6 +21,7 @@ const initialState:InitalState = {
   filmsVisible: [],
   step: 1,
   authorizationStatus: AuthorizationStatus.Unknown,
+  isFilmsDataLoading: false,
   error: null,
 };
 
@@ -41,6 +43,9 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(loadFilms,(state, action) => {
       state.filmsList = action.payload;
       state.filmsVisible = state.filmsList.slice(0,8);
+    })
+    .addCase(setFilmsDataLoadingStatus, (state, action) => {
+      state.isFilmsDataLoading = action.payload;
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;

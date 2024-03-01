@@ -9,11 +9,8 @@ type DetailMessageType = {
 }
 
 const StatusCodeMapping: Record<number, boolean> = {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   [StatusCodes.BAD_REQUEST]: true,
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   [StatusCodes.UNAUTHORIZED]: true,
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   [StatusCodes.NOT_FOUND]: true
 };
 
