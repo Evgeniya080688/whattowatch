@@ -1,13 +1,22 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {changeGenre, getFilmsByGenre, showMoreFilms, loadFilms, requireAuthorization} from './action';
-import {films} from './../mocks/films';
+import {Films} from '../types/film';
 import {AuthorizationStatus} from '../const';
 
-const initialState = {
+type InitalState = {
+  genre: string;
+  filmsList: Films;
+  filmsFiltered: Films;
+  filmsVisible: Films;
+  step: number;
+  authorizationStatus: AuthorizationStatus;
+}
+
+const initialState:InitalState = {
   genre: 'All genres',
-  filmsList: films,
-  filmsFiltered: films,
-  filmsVisible: films.slice(0,8),
+  filmsList: [],
+  filmsFiltered: [],
+  filmsVisible: [],
   step: 1,
   authorizationStatus: AuthorizationStatus.Unknown,
 };
@@ -29,6 +38,7 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadFilms,(state, action) => {
       state.filmsList = action.payload;
+      state.filmsVisible = state.filmsList.slice(0,8);
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
