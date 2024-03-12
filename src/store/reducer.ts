@@ -20,7 +20,7 @@ const initialState:InitalState = {
   filmsFiltered: [],
   filmsVisible: [],
   step: 1,
-  authorizationStatus: AuthorizationStatus.Unknown,
+  authorizationStatus: AuthorizationStatus.Auth,
   isFilmsDataLoading: false,
   error: null,
 };
@@ -42,6 +42,7 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadFilms,(state, action) => {
       state.filmsList = action.payload;
+      state.filmsFiltered = state.filmsList;
       state.filmsVisible = state.filmsList.slice(0,8);
     })
     .addCase(setFilmsDataLoadingStatus, (state, action) => {
