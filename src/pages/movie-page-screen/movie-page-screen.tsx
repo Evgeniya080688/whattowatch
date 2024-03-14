@@ -5,17 +5,25 @@ import ButtonMyList from '../../components/button-my-list/button-my-list';
 import UserBlock from '../../components/user-block/user-block';
 import Tabs from '../../components/tabs/tabs';
 import FilmsList from '../../components/films-list/films-list';
-import {Link, useParams} from 'react-router-dom';
+import {Link, useNavigate, useParams} from 'react-router-dom';
 import withVideoPlayer from '../../hocs/with-video-player/with-video-player';
-import {useAppSelector} from '../../hooks';
+import { useAppDispatch,useAppSelector} from '../../hooks';
+import {fetchFilmByIdAction, fetchSimilarFilmsAction} from '../../store/api-actions';
 const FilmsListWrapped = withVideoPlayer(FilmsList);
 
 function MoviePageScreen(): JSX.Element {
   const { id } = useParams();
-  const films = useAppSelector((state) => state.filmsList);
-  const film = films[Number(String(id).slice(1))];
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  dispatch(fetchFilmByIdAction(id));
+  dispatch(fetchSimilarFilmsAction(id));
+  const filmsByGenre = useAppSelector((state) => state.similarFilms);
+  const error = useAppSelector((state) => state.error);
+  if (error === 'not found film') {navigate('/*');}
+  const film = useAppSelector((state) => state.filmCurrent);
   const {name, posterImage, backgroundImage, genre, released} = film;
-  const filmsByGenre = films.filter((filmItem) => filmItem.genre === genre && filmItem.id !== Number(String(id).slice(1)));
+
+  //const filmsByGenre = films.filter((filmItem) => filmItem.genre === genre && filmItem.id !== Number(String(id).slice(1)));
   return (
     <>
       <section className="film-card film-card--full">

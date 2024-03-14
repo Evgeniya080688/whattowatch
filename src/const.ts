@@ -19,4 +19,7 @@ export enum APIRoute {
   Films = '/films',
   Login = '/login',
   Logout = '/logout',
+  Film = '/films/',
+  MyList = '/mylist',
+  Comments ='/comments/',
 }

@@ -1,6 +1,16 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeGenre, getFilmsByGenre, showMoreFilms, loadFilms, requireAuthorization, setError, setFilmsDataLoadingStatus} from './action';
-import {Films} from '../types/film';
+import {
+  changeGenre,
+  getFilmsByGenre,
+  showMoreFilms,
+  loadFilms,
+  requireAuthorization,
+  setError,
+  setFilmsDataLoadingStatus,
+  setFilmDataLoadingStatus,
+  loadFilmById, loadSimilarFilms, loadCommentsById
+} from './action';
+import {Films, Film} from '../types/film';
 import {AuthorizationStatus} from '../const';
 
 type InitalState = {
@@ -8,9 +18,13 @@ type InitalState = {
   filmsList: Films;
   filmsFiltered: Films;
   filmsVisible: Films;
+  filmCurrent: Film;
+  similarFilms: Films;
+  filmComments: [];
   step: number;
   authorizationStatus: AuthorizationStatus;
   isFilmsDataLoading: boolean;
+  isFilmDataLoading: boolean;
   error: string | null;
 }
 
@@ -19,9 +33,13 @@ const initialState:InitalState = {
   filmsList: [],
   filmsFiltered: [],
   filmsVisible: [],
+  filmCurrent: {name:'',posterImage:'',previewImage:'',backgroundImage: '',backgroundColor: '',description:'',rating:9.9,scoresCount:276395,director:'',starring:[''],runTime:229,genre:'',released:1984,'id':-1,'isFavorite':false,videoLink:'',previewVideoLink:''},
+  similarFilms: [],
+  filmComments: [],
   step: 1,
-  authorizationStatus: AuthorizationStatus.Auth,
+  authorizationStatus: AuthorizationStatus.Unknown,
   isFilmsDataLoading: false,
+  isFilmDataLoading: false,
   error: null,
 };
 
@@ -45,8 +63,20 @@ const reducer = createReducer(initialState, (builder) => {
       state.filmsFiltered = state.filmsList;
       state.filmsVisible = state.filmsList.slice(0,8);
     })
+    .addCase(loadSimilarFilms,(state, action) => {
+      state.similarFilms = action.payload;
+    })
+    .addCase(loadFilmById,(state, action) => {
+      state.filmCurrent = action.payload;
+    })
+    .addCase(loadCommentsById, (state, action) => {
+      state.filmComments = action.payload;
+    })
     .addCase(setFilmsDataLoadingStatus, (state, action) => {
       state.isFilmsDataLoading = action.payload;
+    })
+    .addCase(setFilmDataLoadingStatus, (state, action) => {
+      state.isFilmDataLoading = action.payload;
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;

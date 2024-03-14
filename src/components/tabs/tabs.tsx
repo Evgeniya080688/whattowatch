@@ -25,7 +25,7 @@ function Tabs({film}: TabsProps): JSX.Element {
 
       <Overview id={0} isActive={isActiveTab} scoresCount={scoresCount} rating={rating} description={description} director={director} starring={starring} />
       <Details id={1} isActive={isActiveTab} runTime={runTime} genre={genre} released={released} director={director} starring={starring}/>
-      <Reviews id={2} isActive={isActiveTab}/>
+      <Reviews idTab={2} isActive={isActiveTab}/>
     </div>
   );
 }
