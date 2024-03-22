@@ -9,10 +9,11 @@ import {
   setError,
   setFilmsDataLoadingStatus,
   loadSimilarFilms,
-  loadCommentsById
+  loadCommentsById,
+  redirectToRoute, hideVisibleReviews, showVisibleReviews
 } from './action';
-import {saveToken, dropToken, getToken} from '../services/token';
-import {APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR} from '../const';
+import {saveToken, dropToken} from '../services/token';
+import {APIRoute, AppRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR} from '../const';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 import {CommentsData} from '../types/comments-data';
@@ -56,6 +57,8 @@ export const fetchFilmByIdAction = createAsyncThunk<void, string|undefined, {
       dispatch(loadFilmById(data));
     } catch {
       dispatch(setError('not found film'));
+      dispatch(redirectToRoute(AppRoute.NotFound));
+      dispatch(clearErrorAction());
     }
   },
 ) ;
@@ -126,6 +129,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
     const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    dispatch(showVisibleReviews());
   },
 );
 
@@ -139,5 +143,6 @@ export const logoutAction = createAsyncThunk<void, undefined, {
     await api.delete(APIRoute.Logout);
     dropToken();
     dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+    dispatch(hideVisibleReviews());
   },
 );

@@ -5,28 +5,32 @@ import ButtonMyList from '../../components/button-my-list/button-my-list';
 import UserBlock from '../../components/user-block/user-block';
 import Tabs from '../../components/tabs/tabs';
 import FilmsList from '../../components/films-list/films-list';
-import {Link, useNavigate, useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import { useEffect} from 'react';
 import withVideoPlayer from '../../hocs/with-video-player/with-video-player';
 import { useAppDispatch,useAppSelector} from '../../hooks';
-import {clearErrorAction, fetchFilmByIdAction, fetchSimilarFilmsAction} from '../../store/api-actions';
+import {fetchFilmByIdAction, fetchSimilarFilmsAction} from '../../store/api-actions';
+import {AuthorizationStatus} from '../../const';
+import {hideVisibleReviews, showVisibleReviews} from '../../store/action';
 const FilmsListWrapped = withVideoPlayer(FilmsList);
 
 function MoviePageScreen(): JSX.Element {
   const { id } = useParams();
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const error = useAppSelector((state) => state.error);
+  const visibleReview = useAppSelector((state) => state.visibleReviews);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   useEffect(() => {
     dispatch(fetchFilmByIdAction(id));
     dispatch(fetchSimilarFilmsAction(id));
-    console.log(error);
-    if (error === 'not found film') {navigate('/*');dispatch(clearErrorAction());}
+    if (authorizationStatus === AuthorizationStatus.Unknown) {
+      dispatch(hideVisibleReviews());
+    } else {
+      dispatch(showVisibleReviews());
+    }
   }, [id]);
 
   const filmsByGenre = useAppSelector((state) => state.similarFilms);
-  //if (error === 'not found film') {navigate('/*');dispatch(clearErrorAction());}
   const film = useAppSelector((state) => state.filmCurrent);
   const {name, posterImage, backgroundImage, genre, released} = film;
 
@@ -57,7 +61,7 @@ function MoviePageScreen(): JSX.Element {
               <div className="film-card__buttons">
                 <ButtonPlay />
                 <ButtonMyList />
-                <Link className="btn film-card__button" to={`/films/${String(id)}/review`}>Add review</Link>
+                <Link className={`btn film-card__button ${(!visibleReview) ? 'visually-hidden' : ''}`} to={`/films/${String(id)}/review`}>Add review</Link>
               </div>
             </div>
           </div>

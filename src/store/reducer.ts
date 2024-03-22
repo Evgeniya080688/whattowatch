@@ -8,7 +8,7 @@ import {
   setError,
   setFilmsDataLoadingStatus,
   setFilmDataLoadingStatus,
-  loadFilmById, loadSimilarFilms, loadCommentsById
+  loadFilmById, loadSimilarFilms, loadCommentsById, showVisibleReviews, hideVisibleReviews
 } from './action';
 import {Films, Film} from '../types/film';
 import {AuthorizationStatus} from '../const';
@@ -26,6 +26,7 @@ type InitalState = {
   isFilmsDataLoading: boolean;
   isFilmDataLoading: boolean;
   error: string | null;
+  visibleReviews: boolean;
 }
 
 const initialState:InitalState = {
@@ -41,6 +42,7 @@ const initialState:InitalState = {
   isFilmsDataLoading: false,
   isFilmDataLoading: false,
   error: null,
+  visibleReviews: false,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -57,6 +59,12 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(showMoreFilms,(state) => {
       state.step++;
       state.filmsVisible = state.filmsFiltered.slice(0,8 * state.step);
+    })
+    .addCase(showVisibleReviews, (state) => {
+      state.visibleReviews = true;
+    })
+    .addCase(hideVisibleReviews, (state) => {
+      state.visibleReviews = false;
     })
     .addCase(loadFilms,(state, action) => {
       state.filmsList = action.payload;
