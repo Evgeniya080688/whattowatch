@@ -26,7 +26,7 @@ function FilmCard({id, key, src, title, poster, isPlaying, onFocusPlayer, onUnFo
 
       />
       <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={`/films/:${id}`}>{title}</Link>
+        <Link className="small-film-card__link" to={`/films/${id}`}>{title}</Link>
       </h3>
     </article>
 

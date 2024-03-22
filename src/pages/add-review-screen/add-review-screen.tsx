@@ -1,19 +1,16 @@
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import AddReviewForm from '../../components/add-review-form/add-review-form';
-import {useParams} from 'react-router-dom';
 import {useAppSelector} from '../../hooks';
 
 function AddReviewScreen(): JSX.Element {
-  const { id } = useParams();
-  const films = useAppSelector((state) => state.filmsList);
-  const film = films[Number(String(id).slice(1))];
+  const film = useAppSelector((state) => state.filmCurrent);
   const {posterImage, previewImage, videoLink, name} = film;
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={posterImage} alt="The Grand Budapest Hotel"/>
+          <img src={posterImage} alt={name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>

@@ -1,6 +1,7 @@
 import {fetchCommentsByIdAction} from '../../store/api-actions';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {useParams} from 'react-router-dom';
+import {useEffect} from 'react';
 
 type ReviewsProps = {
   idTab: number;
@@ -10,7 +11,9 @@ type ReviewsProps = {
 function Reviews({idTab, isActive}:ReviewsProps): JSX.Element {
   const { id } = useParams();
   const dispatch = useAppDispatch();
-  dispatch(fetchCommentsByIdAction(id));
+  useEffect(() => {
+    dispatch(fetchCommentsByIdAction(id));
+  }, [id]);
   const comments = useAppSelector((state) => state.filmComments);
 
   return (

@@ -11,10 +11,11 @@ import {
   loadSimilarFilms,
   loadCommentsById
 } from './action';
-import {saveToken, dropToken} from '../services/token';
+import {saveToken, dropToken, getToken} from '../services/token';
 import {APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR} from '../const';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
+import {CommentsData} from '../types/comments-data';
 import {store} from './';
 
 export const clearErrorAction = createAsyncThunk(
@@ -57,7 +58,7 @@ export const fetchFilmByIdAction = createAsyncThunk<void, string|undefined, {
       dispatch(setError('not found film'));
     }
   },
-);
+) ;
 
 export const fetchSimilarFilmsAction = createAsyncThunk<void, string|undefined, {
   dispatch: AppDispatch;
@@ -87,6 +88,18 @@ export const fetchCommentsByIdAction = createAsyncThunk<void, string|undefined, 
   },
 );
 
+export const sendCommentsAction = createAsyncThunk<void, CommentsData, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/comment',
+  async ({idFilm,comment, rating}, {dispatch, extra: api}) => {
+    const url = String(APIRoute.Comments) + String(idFilm);
+    await api.post<UserData>(url, {comment, rating});
+    //dispatch(requireAuthorization(AuthorizationStatus.Auth));
+  },
+);
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
   state: State;
